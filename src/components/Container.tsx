@@ -32,9 +32,10 @@ export default function Container ({ data,
     id,
     content,
     createdAt,
-    score,
+    score: initialScore,
     user: { username, image },
   } = data;
+  const [score, setScore] = useState(initialScore)
   const[editedReply, setEditedReply] = useState(content.trim())
   const {user: loggedinUser} = useUserContext()
   const {setIsModalOpen, modalFn} = useModalContext()
@@ -47,6 +48,14 @@ export default function Container ({ data,
       textarea.setSelectionRange(textarea.value.length, textarea.value.length)
       textarea.focus()
     } 
+  }
+
+  function updateScore(operand: string){
+    console.log(operand)
+    if (operand === "add") {
+      return  setScore(prev => prev + 1)
+    }
+    setScore(prev => prev - 1)
   }
    
   const canEdit = username === loggedinUser.username;
@@ -103,9 +112,9 @@ export default function Container ({ data,
         }
         
         <div className="comment__score inline-block bg-vlGray px-3 py-1.5 rounded-xl">
-          <button className=" text-grayBlue font-bold opacity-40 text-lg ">+</button>
+          <button onClick={() => updateScore("add")} className=" text-grayBlue font-bold opacity-40 text-lg ">+</button>
           <span className=" font-bold text-modBlue">{score}</span>
-          <button className=" text-grayBlue font-bold opacity-40 text-lg ">-</button>
+          <button onClick={() => updateScore("subtract")}  className=" text-grayBlue font-bold opacity-40 text-lg ">-</button>
         </div>
         {cta}
       </div>
