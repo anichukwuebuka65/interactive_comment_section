@@ -14,7 +14,7 @@ type commentPropType = {
 
 
 export default function Comments({comment, setComments, handleCommentUpdate}: commentPropType) {
-  const [replies, setReplies] = useState<repliesType[]>(data)
+  const [replies, setReplies] = useState<repliesType[]>(data.filter(reply => reply.commentId === comment.id))
   const [isTextBoxOpen, setIsTextBoxOpen] = useState(false)
   const [editing, setEditing] = useState(false)
 

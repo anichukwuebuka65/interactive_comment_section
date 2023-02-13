@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { commentType, userType } from "../types/types";
-import { currentUser } from "../data";
+import { currentUser as user} from "../data";
 
 type addCommentPropType = {
   setData:React.Dispatch<React.SetStateAction<commentType[] >>
 }
 
 export default function AddComment({setData}:addCommentPropType) {
-  const [user, setUser] = useState<userType>(currentUser);
+  //const [user, setUser] = useState<userType>(currentUser);
   const [comment, setComment] = useState(" ");
 
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
