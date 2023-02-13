@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Ubuntu:wght@700&display=swap'); 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+    font-size: 1rem;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+}
+
+.comment {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: 32px auto;
+    align-items: start;
+    gap: 18px;
+}
+
+.comment__title {
+    grid-column: 1 / 4;
+}
+
+.comment__body {
+    grid-column: 1 / 4;
+}
+
+.comment__score {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.comment__cta {
+    grid-column: 3 / 4;
+}
+
+.comment__cta--reply::before {
+    content: "";
+    position: absolute;
+    -webkit-mask: url('/images/icon-reply.svg') no-repeat;
+    mask: url('/images/icon-reply.svg') no-repeat;
+    background-color: hsl(238, 40%, 52%);
+    width: 20px;
+    height: 16px;
+    left: 2px;
+    bottom: 2px;
+}
+
+.comment__cta--reply:hover::before{
+    background-color: hsl(239, 57%, 85%);
+}
+
+.comment__btn::before {
+    position: absolute;
+    content: "";
+    width: 16px;
+    height: 16px;
+    top: 6px;
+    left: -20px;    
+}
+
+.comment__btn--delete::before {
+    background-color: hsl(358, 79%, 66%);
+    -webkit-mask: url('/images/icon-delete.svg') no-repeat;
+    mask: url('/images/icon-delete.svg') no-repeat;
+}
+
+.comment__btn--delete:hover::before {
+    background-color: hsl(357, 100%, 86%);
+}
+
+.comment__btn--edit::before {
+    background-color: hsl(238, 40%, 52%);
+    -webkit-mask: url('/images/icon-edit.svg') no-repeat;
+    mask: url('/images/icon-edit.svg') no-repeat;
+}
+
+.comment__btn--edit:hover::before {
+    background-color: hsl(239, 57%, 85%);
+}
+
+.cta {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 20px;
+}
+
+.cta__img {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+
+.cta__textarea {
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+}
+
+.cta__btn{
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+}
+
+
+@media (min-width: 500px) {
+
+    .comment__title {
+    grid-column: 2 / 3;
+    }
+
+    .comment__body {
+        grid-column: 2 / 4;
+
+    }
+
+    .comment__score {
+        grid-column: 1 / 2;
+        grid-row: 1 / 3;
+        flex-direction: column;
+        gap: 4px;
+        min-width: 40px;
+    }
+
+    .comment__cta {
+        grid-column: 3 / 4;
+        grid-row: 1 / 2;
+    }
+
+    .cta__img {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+
+    .cta__textarea {
+        grid-column: 2 / 3;
+        grid-row: 1 / 3;
+    }
+
+    .cta__btn {
+        grid-row: 1 / 2;
+    }
+
+}
