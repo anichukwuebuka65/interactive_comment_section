@@ -37,14 +37,15 @@ export default function App() {
 
   return (
       <div className=" bg-vlGray ">
-        <div className="min-h-screen max-w-[780px] mx-auto text-grayBlue py-8 px-4">
+        <main className="min-h-screen max-w-[780px] mx-auto text-grayBlue py-8 px-4">
+          <h1 className="text-center font-bold text-3xl text-darkBlue mb-4">Interactive Comments</h1>
           <section className="mb-2">
             {commmentList}
           </section>
           <section>
             <AddComment setData={setComments}/>
           </section>
-        </div>
+        </main>
          {isModalOpen ? <Dialog  /> : null }
       </div >
   );

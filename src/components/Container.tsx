@@ -110,7 +110,6 @@ export default function Container ({ data,
           <span className="text-modBlue font-bold ">{data.replyingTo && `@${data.replyingTo}`}</span> {content}
         </p>)
         }
-        
         <div className="comment__score inline-block bg-vlGray px-3 py-1.5 rounded-xl">
           <button onClick={() => updateScore("add")} className=" text-grayBlue font-bold opacity-40 text-lg ">+</button>
           <span className=" font-bold text-modBlue">{score}</span>
