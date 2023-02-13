@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { commentType, userType } from "../types/types";
+import { currentUser } from "../data";
 
 type addCommentPropType = {
   setData:React.Dispatch<React.SetStateAction<commentType[] >>
 }
 
 export default function AddComment({setData}:addCommentPropType) {
-  const [user, setUser] = useState<userType>({
-    image: { webp: "", png: "" },
-    username: "",
-  });
+  const [user, setUser] = useState<userType>(currentUser);
   const [comment, setComment] = useState(" ");
 
   function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -19,31 +17,44 @@ export default function AddComment({setData}:addCommentPropType) {
   async function handleSubmit(e: React.FormEvent<HTMLButtonElement>) {
     e.preventDefault();
 
-    fetch("http://localhost:3000/comments", {
-      method: "POST",
-      body: JSON.stringify({
-        "content": comment,
-        "score": 0,
-        "replies": [],
-        "user": user,
-        "createdAt": "just now",
-      }),
-      headers: {
-        "Content-Type": "Application/json",
-      },
-    })
-    .then((res) => res.json())
-    .then((data) => {
-      setComment("")
-      setData(prev => ([...prev, data]))
-    })
+    setComment("")
+    setData(prev => ([
+      ...prev,
+      {
+        id: Math.floor(Math.random() * 100),
+        content: comment,
+         score: 0,
+        replies: [],
+        user: user,
+        createdAt: "just now",
+       }
+    ]))
+
+    // fetch("http://localhost:3000/comments", {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     "content": comment,
+    //     "score": 0,
+    //     "replies": [],
+    //     "user": user,
+    //     "createdAt": "just now",
+    //   }),
+    //   headers: {
+    //     "Content-Type": "Application/json",
+    //   },
+    // })
+    // .then((res) => res.json())
+    // .then((data) => {
+    //   setComment("")
+    //   setData(prev => ([...prev, data]))
+    // })
   }
 
-  useEffect(() => {
-    fetch("http://localhost:3000/currentUser")
-      .then((res) => res.json())
-      .then((data) => setUser(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/currentUser")
+  //     .then((res) => res.json())
+  //     .then((data) => setUser(data));
+  // }, []);
 
   return (
     <div className='cta bg-white p-6 rounded-lg mb-4'>
