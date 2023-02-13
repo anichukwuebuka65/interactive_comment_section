@@ -93,7 +93,9 @@ export default function Container ({ data,
         </div>
         {editing ?
         (<div className="comment__body">
+          <label htmlFor="edit-comment" className="hidden">Edit reply</label>
           <textarea
+            id="edit-comment"
             ref={editRef} 
             className='block w-full mb-4 border rounded-lg border-lightGray px-6 p-3 focus:outline-0 focus:border-darkBlue ' 
             value={editedReply} 
